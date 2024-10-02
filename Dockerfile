@@ -39,7 +39,6 @@ COPY index.js .
 COPY package.json .
 
 RUN npm install -g forever
-#RUN npm install -g @jbrowse/cli@${JBROWSE_VERSION}
 RUN npm install -g @jbrowse/cli
 RUN npm install
 
