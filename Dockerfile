@@ -27,7 +27,7 @@ COPY index.js .
 COPY package.json .
 
 RUN npm install forever
-RUN npm install @jbrowse/cli
+RUN npm install -g @jbrowse/cli
 RUN npm install
 
 # Volumes
@@ -35,4 +35,4 @@ VOLUME /var/www
 VOLUME /data
 
 EXPOSE 8080
-CMD ["node", "index.js"]
+CMD NODE_ENV=production forever index.js
