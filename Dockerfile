@@ -8,7 +8,7 @@ ARG SAMTOOLS_VERSION=1.21
 ARG HTSLIB_VERSION=1.21
 
 # Handle dependencies
-RUN apt-get update && apt-get -y upgrade && apt-get -y install build-essential git zlib1g-dev genometools vim tabix && apt-get clean && echo -n > /var/lib/apt/extended_states
+RUN apt-get update && apt-get -y upgrade && apt-get -y install build-essential git zlib1g-dev genometools vim tabix net-tools htop && apt-get clean && echo -n > /var/lib/apt/extended_states
 
 RUN mkdir -p /soft/bin
 
@@ -26,8 +26,7 @@ WORKDIR /srv
 COPY index.js .
 COPY package.json .
 
-RUN npm install forever
-RUN npm install -g @jbrowse/cli
+RUN npm install -g forever @jbrowse/cli
 RUN npm install
 
 # Volumes
@@ -36,3 +35,4 @@ VOLUME /data
 
 EXPOSE 8080
 CMD NODE_ENV="production forever index.js"
+CMD ["node", "forever", "index.js"]
