@@ -26,7 +26,8 @@ WORKDIR /srv
 COPY index.js .
 COPY package.json .
 
-RUN npm install -g forever @jbrowse/cli
+RUN npm install forever 
+RUN npm install -g @jbrowse/cli
 RUN npm install
 
 # Volumes
@@ -35,4 +36,4 @@ VOLUME /data
 
 EXPOSE 8080
 CMD NODE_ENV="production forever index.js"
-CMD ["node", "forever", "index.js"]
+CMD ["production", "node", "forever", "index.js"]
