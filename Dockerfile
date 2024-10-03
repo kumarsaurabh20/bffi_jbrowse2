@@ -8,6 +8,7 @@ ARG SAMTOOLS_VERSION=1.21
 ARG HTSLIB_VERSION=1.21
 
 # Handle dependencies
+USER root
 RUN apt-get update && apt-get -y upgrade && apt-get -y install build-essential git zlib1g-dev genometools vim tabix net-tools htop && apt-get clean && echo -n > /var/lib/apt/extended_states
 
 RUN mkdir -p /soft/bin
@@ -19,23 +20,25 @@ RUN wget -q https://github.com/samtools/htslib/releases/download/${HTSLIB_VERSIO
 # PATH
 ENV PATH $PATH:/soft/bin
 
-RUN mkdir -p /srv
+RUN mkdir -p /var/www/html
 
-WORKDIR /srv
+WORKDIR /var/www/html
 
 COPY index.js .
 COPY package.json .
 
 RUN npm install forever 
-RUN npm install -g @jbrowse/cli
-RUN npm install
-WORKDIR /var/www/html
+RUN npm install -g @jbrowse/cli \
+&& jbrowse --version
 RUN jbrowse create jbrowse2
 
-WORKDIR /srv
 # Volumes
 VOLUME /var/www
 VOLUME /data
 
-EXPOSE 8080
+EXPOSE 5000
+WORKDIR /var/www/html/jbrowse2
+CMD npx serve .
+
+WORKDIR /var/www/html
 CMD ["node", "index.js"]
