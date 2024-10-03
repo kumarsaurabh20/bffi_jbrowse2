@@ -22,16 +22,9 @@ ENV PATH $PATH:/soft/bin
 
 WORKDIR /
 
-RUN npm install forever 
 RUN npm install -g @jbrowse/cli \
 && jbrowse --version
 RUN jbrowse create jbrowse2
-
-# COPY index.js .
-# COPY package.json .
-# Volumes
-VOLUME /var/www
-VOLUME /data
 
 EXPOSE 8080
 WORKDIR /jbrowse2
