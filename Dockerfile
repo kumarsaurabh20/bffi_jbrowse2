@@ -35,5 +35,4 @@ VOLUME /var/www
 VOLUME /data
 
 EXPOSE 8080
-CMD NODE_ENV="production forever index.js"
 CMD ["production", "node", "forever", "index.js"]
