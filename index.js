@@ -3,7 +3,7 @@ var http = require('http')
 var serveStatic = require('serve-static')
 
 // Serve up public folder
-var serve = serveStatic('/var/www', { index: ['index.html', 'index.htm'] })
+var serve = serveStatic('/var/www/jbrowse2', { index: ['index.html', 'index.htm'] })
 
 // Create server
 var server = http.createServer(function onRequest (req, res) {
