@@ -29,6 +29,7 @@ COPY package.json .
 RUN npm install forever 
 RUN npm install -g @jbrowse/cli
 RUN npm install
+RUN jbrowse create jbrowse2
 
 # Volumes
 VOLUME /var/www
