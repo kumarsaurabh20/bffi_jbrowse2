@@ -22,8 +22,9 @@ USER root
 
 WORKDIR /
 
-RUN npm install -g @gmod/jbrowse-cli \
+RUN npm install -g @jbrowse/cli \
 && jbrowse --version
+RUN npm install
 RUN jbrowse create jbrowse2
 
 EXPOSE 8080
