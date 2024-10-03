@@ -20,22 +20,19 @@ RUN wget -q https://github.com/samtools/htslib/releases/download/${HTSLIB_VERSIO
 # PATH
 ENV PATH $PATH:/soft/bin
 
-WORKDIR /var/www
+WORKDIR /
 
 RUN npm install forever 
 RUN npm install -g @jbrowse/cli \
 && jbrowse --version
 RUN jbrowse create jbrowse2
 
-COPY index.js .
-COPY package.json .
+# COPY index.js .
+# COPY package.json .
 # Volumes
 VOLUME /var/www
 VOLUME /data
 
 EXPOSE 8080
-WORKDIR /var/www/jbrowse2
+WORKDIR /jbrowse2
 CMD npx serve .
-
-WORKDIR /var/www
-CMD ["node", "index.js"]
