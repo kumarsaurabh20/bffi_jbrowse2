@@ -35,4 +35,4 @@ VOLUME /var/www
 VOLUME /data
 
 EXPOSE 8080
-CMD ["production", "node", "forever", "index.js"]
+CMD ["node", "index.js"]
