@@ -1,5 +1,5 @@
 # from node image
-FROM node:18-bullseye
+FROM node:lts-alpine3.20
 
 LABEL org.opencontainers.image.authors="kumarsaurabh.singh@maastrichtuniversity.nl"
 
@@ -22,7 +22,7 @@ ENV PATH $PATH:/soft/bin
 
 WORKDIR /
 
-RUN npm install -g @jbrowse/cli \
+RUN npm install -g @gmod/jbrowse-cli \
 && jbrowse --version
 RUN jbrowse create jbrowse2
 
