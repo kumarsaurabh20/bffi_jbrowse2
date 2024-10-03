@@ -32,6 +32,7 @@ RUN npm install
 WORKDIR /var/www/html
 RUN jbrowse create jbrowse2
 
+WORKDIR /srv
 # Volumes
 VOLUME /var/www
 VOLUME /data
